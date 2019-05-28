@@ -45,6 +45,7 @@
   </div>
 </template>
 <script>
+import * as firestore from '@/lib/db.js'
 export default {
   name: 'create',
   data() {
@@ -63,19 +64,43 @@ export default {
   },
   methods: {
     addUser() {
-      this.$firebase.auth().createUserWithEmailAndPassword(this.user.email, this.user.password)
+      this.$fireauth.createUserWithEmailAndPassword(this.user.email, this.user.password)
       .then(result=> {
-        console.log(result)
+        if(result.additionalUserInfo.isNewUser) {
+          firestore.add({
+            email: this.user.email,
+            nickName: this.user.nickName,
+            name: this.user.name,
+            birth: this.user.birth,
+            phone: this.user.phone,
+            address: this.user.address
+          })
+          .then(result => { this.$router.push('/') })
+          .catch(err => { throw new Error })
+        }
       })
-      .catch(err => {
-        console.log(err)
-        console.log(err.code)
-        console.log(err.message)
-      })
-    }
+      .catch(firestore.err)
+    },
+  },
+  created() {
+    // .then(result => {
+    //   console.log('this is login after result: ',result)
+    //     this.$fireauth.onAuthStateChanged(function(user) {
+    //       if (user) {
+    //         console.log(user)
+    //         // User is signed in.
+    //       } else {
+    //         // No user is signed in.
+    //       }
+    //     });
+    // })
+    // .catch(function(error) {
+    //   // Handle Errors here.
+    //   var errorCode = error.code;
+    //   var errorMessage = error.message;
+    //   // ...
+    // });
   }
-
-
 }
 </script>
 <style lang="scss" scoped>

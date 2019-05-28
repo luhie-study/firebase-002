@@ -1,12 +1,24 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <Navbar></Navbar>
     </div>
     <router-view/>
+    <div id="footer">
+      <MainFooter></MainFooter>
+    </div>
   </div>
 </template>
+<script>
+import Navbar from '@/components/layout/Navbar.vue'
+import MainFooter from '@/components/layout/MainFooter.vue'
+export default {
+  components: {
+    Navbar,
+    MainFooter
+  }
+}
+</script>
 
 <style lang="scss">
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -16,15 +28,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

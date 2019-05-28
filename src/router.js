@@ -14,15 +14,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/auth',
+      path: '/auth/:type',
       name: 'auth',
-      component: () => import(/* webpackChunkName: "about" */ './views/Auth.vue')
+      component: () => import(/* webpackChunkName: "auth" */ './views/Auth.vue')
     },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/Auth.vue')
-    }
-
   ]
 })
