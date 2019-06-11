@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <router-link to="/">Home</router-link>
-    <router-link to="/auth/create">Auth</router-link>
+    <router-link to="/auth/register" v-show="!isLogin">Join Us</router-link>
     <router-link to="/auth/login" v-if="!isLogin">Login</router-link>
     <a @click="logout" v-else>Logout</a>
   </div>

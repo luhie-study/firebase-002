@@ -31,6 +31,9 @@ export default {
   methods: {
     login() {
       this.$fireauth.signInWithEmailAndPassword(this.email, this.password)
+      .then(result => {
+        if(result.operationType === 'signIn') this.$router.push('/')
+      })
       .catch(function(error) {
         alert(error.message)
       })

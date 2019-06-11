@@ -14,9 +14,23 @@ export default new Router({
       component: Home
     },
     {
-      path: '/auth/:type',
+      path: '/auth',
       name: 'auth',
-      component: () => import(/* webpackChunkName: "auth" */ './views/Auth.vue')
+      component: () => import(/* webpackChunkName: "auth" */ './views/Auth.vue'),
+      children: [
+        {
+          path: 'register',
+          component: () => import(/* webpackChunkName: "auth" */ '@/components/account/Register.vue')
+        },
+        {
+          path: 'login',
+          component: () => import(/* webpackChunkName: "auth" */ '@/components/account/Login.vue')
+        }
+      ]
     },
-  ]
+  ],
+
 })
+/*
+  참고 https://router.vuejs.org/kr/guide/essentials/nested-routes.html
+*/
