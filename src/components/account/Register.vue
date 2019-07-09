@@ -75,32 +75,18 @@ export default {
             phone: this.user.phone,
             address: this.user.address
           })
-          .then(result => { this.$router.push('/') })
+          .then(result => { 
+            if(result.id != '' || result.id != null) {
+              this.$router.push('/') 
+              alert('회원가입에 성공하셨습니다. ')
+            }
+          })
           .catch(err => { throw new Error })
         }
       })
       .catch(firestore.err)
     },
   },
-  created() {
-    // .then(result => {
-    //   console.log('this is login after result: ',result)
-    //     this.$fireauth.onAuthStateChanged(function(user) {
-    //       if (user) {
-    //         console.log(user)
-    //         // User is signed in.
-    //       } else {
-    //         // No user is signed in.
-    //       }
-    //     });
-    // })
-    // .catch(function(error) {
-    //   // Handle Errors here.
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-    //   // ...
-    // });
-  }
 }
 </script>
 <style lang="scss" scoped>

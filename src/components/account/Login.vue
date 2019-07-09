@@ -1,3 +1,6 @@
+/*
+TODO: find password
+*/
 <template>
   <div class="login container">
     <div class="card">
@@ -13,6 +16,9 @@
           </div>
           <div class="form-group">
             <button class="btn btn-primary">Login</button>
+          </div>
+          <div class="form-group">
+          <button class="btn btn-primary" type="button" @click="onFindPassword">Find Password</button>
           </div>
         </form>
       </div>
@@ -37,8 +43,16 @@ export default {
       .catch(function(error) {
         alert(error.message)
       })
+    },
+    onFindPassword() {
+      this.$router.push('/auth/findPassword')
     }
-  }
 
+  },
 }
 </script>
+/*
+* TODO:
+* - [] 비밀번호 찾기 -> 찾을 아이디 입력 -> 인증코드
+*
+*/

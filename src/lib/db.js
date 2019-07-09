@@ -32,5 +32,4 @@ const err = (error) => {
   }
 }
 
-
-export { add, err }
+export { add, err, }
